@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SchoolAppEntities.Department>
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </nav>
+</div>
+<button type="button" class="btn btn-primary btn-sm"><i class="bi bi-plus-square"></i></button>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Department Table</h5>
+        <!-- Table with hoverable rows -->
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Dep Name</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model != null && Model.Count() > 0)
+                {
+                int index = 1;
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@index</th>
+                        <td>@item.DepartmentName</td>
+                            <td>@item.CreatedDate</td>
+                        @if (item.Status == true)
+                            {
+                                <td><span class="badge bg-success">Approved</span></td>
+                            }
+                         else{
+                                <td><span class="badge bg-danger">Not Approved</span></td>
+                            }
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm"> <i class="bi bi-eye"></i></button>
+                                <button type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" class="btn btn-danger btn-sm"> <i class="bi bi-trash"></i></button>
+                                
+                            </td>
+                    </tr>
+                    
+                    index++;
+                }
+                }
+            </tbody>
+        </table>
+        <!-- End Table with hoverable rows -->
+    </div>
+</div>
